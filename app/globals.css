@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand: #2196F3;
+  --color-brand-hover: #1976D2;
+  --color-brand-soft: #EAF4FF;
+  --color-bg: #F7F9FC;
+  --color-surface: #FFFFFF;
+  --color-text-dark: #0F172A;
+  --color-text-body: #64748B;
+  --color-border: #E5EAF0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #F7F9FC;
+  color: #0F172A;
+}
+
+/* ── Flying Bot ── */
+.bot-fly-wrapper {
+  position: absolute;
+  top: 16%;
+  right: 7%;
+  animation: botFlyPath 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes botFlyPath {
+  0%   { transform: translate(0px,    0px); }
+  20%  { transform: translate(-24px, -70px); }
+  40%  { transform: translate(16px, -130px); }
+  60%  { transform: translate(36px,  -60px); }
+  80%  { transform: translate(-12px,  20px); }
+  100% { transform: translate(0px,    0px); }
+}
+
+.bot-body {
+  animation: botFloat 4.5s ease-in-out infinite;
+}
+
+@keyframes botFloat {
+  0%,  100% { transform: translateY(0)   rotate(-4deg); }
+  50%        { transform: translateY(-12px) rotate(4deg); }
+}
+
+.bot-flame-left {
+  transform-origin: center;
+  animation: flameLeft 0.45s ease-in-out infinite;
+}
+.bot-flame-right {
+  transform-origin: center;
+  animation: flameRight 0.45s ease-in-out infinite 0.22s;
+}
+
+@keyframes flameLeft {
+  0%, 100% { opacity: 0.75; transform: scaleY(1); }
+  50%       { opacity: 1;    transform: scaleY(1.35); }
+}
+@keyframes flameRight {
+  0%, 100% { opacity: 0.75; transform: scaleY(1); }
+  50%       { opacity: 1;    transform: scaleY(1.35); }
+}
+
+.bot-eye-glow {
+  animation: eyeGlow 2.8s ease-in-out infinite;
+}
+@keyframes eyeGlow {
+  0%, 100% { filter: drop-shadow(0 0 3px #2196F3); }
+  50%       { filter: drop-shadow(0 0 7px #2196F3); }
+}
+
+.bot-weld {
+  animation: weldPulse 0.9s ease-in-out infinite;
+}
+@keyframes weldPulse {
+  0%, 100% { opacity: 1;   r: 3; }
+  50%       { opacity: 0.4; r: 5; }
+}
+
+.spark {
+  animation: sparkAnim 1.4s ease-in-out infinite;
+}
+.spark-2 { animation-delay: 0.45s; }
+.spark-3 { animation-delay: 0.9s; }
+
+@keyframes sparkAnim {
+  0%   { opacity: 0; transform: scale(0) translate(0, 0); }
+  35%  { opacity: 1; transform: scale(1) translate(0, 0); }
+  70%  { opacity: 0.8; }
+  100% { opacity: 0; transform: scale(0) translate(4px, -4px); }
+}
+
+.trail-path {
+  stroke-dasharray: 5 14;
+  animation: trailDash 2s linear infinite;
+}
+@keyframes trailDash {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -19; }
+}
+
+/* Reduced motion — keep bot visible but static */
+@media (prefers-reduced-motion: reduce) {
+  .bot-fly-wrapper {
+    animation: none;
+    transform: translate(0, 0);
+  }
+  .bot-body,
+  .bot-flame-left,
+  .bot-flame-right,
+  .bot-eye-glow,
+  .bot-weld,
+  .spark {
+    animation: none;
+  }
+}
+
+/* Mobile: keep on right but disable fly path, just float */
+@media (max-width: 640px) {
+  .bot-fly-wrapper {
+    animation: none;
+    top: 12%;
+    right: 4%;
+    transform: translate(0, 0);
+    opacity: 0.55;
+  }
+  .bot-body { animation: botFloat 4.5s ease-in-out infinite; }
+}
+
+/* ── Section labels ── */
+.section-label {
+  @apply inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-brand mb-3;
+}
+
+/* ── Cards ── */
+.card {
+  @apply bg-white rounded-2xl border border-site-border shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #2196F3 0%, #42A5F5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Blue glow button ── */
+.btn-primary {
+  @apply bg-brand text-white px-8 py-3.5 rounded-xl text-base font-semibold transition-all duration-200;
+}
+.btn-primary:hover {
+  background-color: #1976D2;
+  box-shadow: 0 8px 24px rgba(33,150,243,0.35);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  @apply bg-white text-text-dark px-8 py-3.5 rounded-xl text-base font-semibold border border-site-border transition-all duration-200;
+}
+.btn-secondary:hover {
+  @apply border-brand text-brand;
+}
+
+/* ── Dot grid bg ── */
+.dot-grid {
+  background-image: radial-gradient(circle, #D1D9E6 1px, transparent 1px);
+  background-size: 28px 28px;
+}
