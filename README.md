@@ -63,11 +63,11 @@ The `out/` folder contains the static export. Upload it or configure GitHub Page
 
 ## Live Site
 
-_Add hosted site link here after deployment._
+[https://mmm286masud.github.io/portfolio/](https://mmm286masud.github.io/portfolio/)
 
 ## Repository
 
-_Add GitHub repo link here._
+[https://github.com/mmm286masud/portfolio](https://github.com/mmm286masud/portfolio)
 
 ---
 
