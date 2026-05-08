@@ -41,7 +41,7 @@ export default function FlyingBuilderBot() {
 
           {/* The actual robot image */}
           <img
-            src="/robot.png"
+            src={`${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/robot.png`}
             alt=""
             width={200}
             height={200}
